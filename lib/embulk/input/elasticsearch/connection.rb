@@ -33,6 +33,7 @@ module Embulk
                 retry_on_failure: retry_on_failure,
                 transport_options: {
                   request: { timeout: request_timeout }
+                  ssl:     { verify: false }
                 }
               }
             }
