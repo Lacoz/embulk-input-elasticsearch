@@ -32,7 +32,7 @@ module Embulk
                 reload_on_failure: reload_on_failure,
                 retry_on_failure: retry_on_failure,
                 transport_options: {
-                  request: { timeout: request_timeout }
+                  request: { timeout: request_timeout },
                   ssl:     { verify: false }
                 }
               }
