@@ -71,7 +71,7 @@ module Embulk
           rescue Faraday::ResourceNotFound => e
             if (@ignore_not_found)
                return
-            end
+            
           end        
           rescue => e
             if (@retry_on_failure == 0 || retries < @retry_on_failure)
