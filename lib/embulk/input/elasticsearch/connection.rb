@@ -14,6 +14,7 @@ module Embulk
           @sort = task['sort']
           @limit_size = task['limit_size']
           @retry_on_failure = task['retry_on_failure']
+          @ignore_not_found = task['ignore_not_found']
           @client = create_client(
             nodes: task['nodes'],
             reload_connections: task['reload_connections'],
@@ -67,6 +68,11 @@ module Embulk
           retries = 0
           begin
             yield if block_given?
+          rescue Faraday::ResourceNotFound => e
+            if (@ignore_not_found)
+               return
+            end
+          end        
           rescue => e
             if (@retry_on_failure == 0 || retries < @retry_on_failure)
               retries += 1
