@@ -1,6 +1,7 @@
 require 'excon'
 require 'elasticsearch'
 
+
 module Embulk
   module Input
     class Elasticsearch < InputPlugin
@@ -68,11 +69,13 @@ module Embulk
           retries = 0
           begin
             yield if block_given?
-          rescue Faraday::ResourceNotFound => e
+          rescue ::Elasticsearch::Transport::Transport::Errors::NotFound => e
             if (@ignore_not_found)
                return
-            
-          end        
+            end        
+            msg = "Elasticsearch index not found #{e.message}"
+            raise Elasticsearch::ConnectionError.new e, msg
+
           rescue => e
             if (@retry_on_failure == 0 || retries < @retry_on_failure)
               retries += 1
