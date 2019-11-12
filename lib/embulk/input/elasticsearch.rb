@@ -17,6 +17,7 @@ module Embulk
           "index" => config.param("index", :string),
           "reload_connections" => config.param("reload_connections", :bool, default: true),
           "reload_on_failure" => config.param("reload_on_failure", :bool, default: false),
+          "ignore_not_found" => config.param("ignore_not_found", :bool, default: true),
           "index_type" => config.param("index_type", :string, default: nil),
           "retry_on_failure" => config.param("retry_on_failure", :integer, default: 5),
           "per_size" => config.param("per_size", :integer, default: 1000),
