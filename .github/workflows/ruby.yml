@@ -20,5 +20,3 @@ jobs:
         ./embulk.jar gem install bundler
         ./embulk.jar bundle install --path vendor/bundle
         ./embulk.jar bundle exec rake test
-        gem install rake
-        rake release
