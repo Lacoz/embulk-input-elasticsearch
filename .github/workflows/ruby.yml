@@ -13,10 +13,12 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.x
-    - name: Build and test with Rake
+    - name: Build and test with Rake and release
       run: |
         curl -o embulk.jar --create-dirs -L "http://dl.embulk.org/embulk-latest.jar"
         chmod +x embulk.jar
         ./embulk.jar gem install bundler
         ./embulk.jar bundle install --path vendor/bundle
         ./embulk.jar bundle exec rake test
+        gem install rake
+        rake release
