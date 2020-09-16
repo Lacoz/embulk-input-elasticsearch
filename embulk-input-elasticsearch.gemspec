@@ -1,10 +1,10 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "embulk-input-elasticsearch-nosslverify"
-  spec.version       = "0.3.8"
+  spec.version       = "0.3.9"
   spec.authors       = ["toyama0919"]
   spec.summary       = "Elasticsearch input plugin for Embulk"
-  spec.description   = "Loads records from Elasticsearch. parallel query support."
+  spec.description   = "Loads records from Elasticsearch. parallel query support. Allows connect to self signed ssl servers"
   spec.email         = ["toyama0919@gmail.com"]
   spec.licenses      = ["MIT"]
   spec.homepage      = "https://github.com/toyama0919/embulk-input-elasticsearch"
@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'elasticsearch'
+  spec.add_dependency 'elasticsearch', ['= 7.5.0']
   spec.add_dependency 'excon'
   spec.add_development_dependency 'embulk', ['>= 0.8.18']
   spec.add_development_dependency 'bundler', ['>= 1.10.6']
